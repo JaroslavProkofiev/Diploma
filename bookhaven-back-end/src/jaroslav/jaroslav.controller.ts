@@ -15,6 +15,7 @@ export class JaroslavController {
   async getProfile(@CurrentUser('id') id: number){
     return this.jaroslavService.byId(id); 
    }
+
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Auth()
