@@ -42,7 +42,6 @@ export class UserauthService {
         data: {
             email: dto.email,
             name: faker.name.firstName(),
-            avatarPath: faker.image.avatar(),
             phone: faker.phone.number('+380 (###) ### ### '),
             password: await hash(dto.password)
         }

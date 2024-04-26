@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Param, Patch, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Patch, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { JaroslavService } from './jaroslav.service';
 import { Auth } from 'src/userauth/decor/userauth.decorator';
 import { CurrentUser } from 'src/userauth/decor/user.decorator';
@@ -19,12 +19,12 @@ export class JaroslavController {
   @HttpCode(200)
   @Auth()
   @Put('profile')
-  async getNewTokens(@CurrentUser('id') id: number, dto: UserAuthDto){
-    return this.jaroslavService.updateProfile(id, dto); 
+  async getNewTokens(@CurrentUser('id') id: number, @Body() dto: UserAuthDto){
+    return this.jaroslavService.updateProfile(id, dto)
    }
 
-  @Auth()
   @HttpCode(200)
+  @Auth()
   @Patch('profile/favorites/:productId')
   async toggleFavorite(@Param('productId') productId: string, @CurrentUser('id') id: number){
     return this.jaroslavService.toggleFavorite(id, productId); 
